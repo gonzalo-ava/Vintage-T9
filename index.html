@@ -1,0 +1,310 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Vintage T9</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=Instrument+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  /* Layout: hero a dos columnas (texto y precio + foto del producto con selector de color), luego ventajas, ficha y cierre. Azul marino y dorado. Franja de poste de barbero como único adorno. */
+  :root {
+    --bg: #14243B;
+    --surface: #1C3150;
+    --ink: #F4EFE6;
+    --muted: #A9B6C8;
+    --line: #2F4868;
+    --accent: #E2B84F;
+    --steel: #4A78B8;
+    --pole-w: #F4EFE6;
+    --wa: #178F4A;
+    --wa-ink: #FFFFFF;
+    --skin: #8A6A52;
+    --photo-bg: #FFFFFF;
+    --font-display: "Big Shoulders Display", "Arial Narrow", Impact, sans-serif;
+    --font-body: "Instrument Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+    --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+    color-scheme: dark;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--font-body);
+    font-size: 17px;
+    line-height: 1.55;
+    padding-inline: clamp(16px, 4vw, 40px);
+  }
+  img { max-width: 100%; height: auto; display: block; }
+  a { color: inherit; }
+  :focus-visible { outline: 3px solid var(--steel); outline-offset: 3px; border-radius: 4px; }
+
+  .wrap { max-width: 1100px; margin-inline: auto; }
+  section { padding-block: clamp(40px, 7vw, 88px); }
+  section + section { border-top: 1px solid var(--line); }
+
+  h1, h2, h3 { font-family: var(--font-display); text-transform: uppercase; line-height: 0.95; margin: 0; text-wrap: balance; letter-spacing: 0.005em; }
+  h1 { font-size: clamp(3.2rem, 9.5vw, 6.6rem); font-weight: 900; }
+  h2 { font-size: clamp(2.2rem, 5.5vw, 3.6rem); font-weight: 800; }
+  h3 { font-size: 1.5rem; font-weight: 800; }
+  p { margin: 0; }
+  .eyebrow { font-family: var(--font-mono); font-size: 0.78rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+  .lead { font-size: 1.15rem; color: var(--muted); max-width: 46ch; }
+
+  .pole {
+    height: 8px;
+    background: repeating-linear-gradient(-45deg, var(--accent) 0 10px, var(--pole-w) 10px 20px, var(--steel) 20px 30px, var(--pole-w) 30px 40px);
+  }
+
+  .top { position: sticky; top: 0; z-index: 5; background: var(--bg); margin-inline: calc(clamp(16px, 4vw, 40px) * -1); padding-inline: clamp(16px, 4vw, 40px); border-bottom: 1px solid var(--line); }
+  .top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 12px; }
+  .brand { font-family: var(--font-display); font-weight: 900; font-size: 1.7rem; letter-spacing: 0.06em; text-decoration: none; line-height: 1; text-transform: uppercase; }
+  .brand span { color: var(--accent); }
+
+  .btn-wa {
+    display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+    background: var(--wa); color: var(--wa-ink); text-decoration: none;
+    font-weight: 600; font-size: 1rem; line-height: 1.2;
+    padding: 14px 22px; border-radius: 6px; border: 0; cursor: pointer;
+    transition: transform .15s ease, filter .15s ease;
+  }
+  .btn-wa:hover { filter: brightness(1.1); transform: translateY(-1px); }
+  .btn-wa svg { width: 24px; height: 24px; flex: none; }
+  .btn-wa.small { padding: 10px 16px; font-size: 0.95rem; min-height: 48px; }
+  .btn-wa.big { padding: 18px 30px; font-size: 1.1rem; }
+
+  /* Hero */
+  .grid2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr)); gap: clamp(28px, 5vw, 64px); align-items: center; }
+  .hero-text { display: flex; flex-direction: column; gap: 22px; min-width: 0; }
+  .hero h1 em { font-style: normal; color: var(--accent); }
+
+  .colors { display: flex; flex-direction: column; gap: 10px; }
+  .colors .eyebrow { margin: 0; }
+  .swatches { display: flex; flex-wrap: wrap; gap: 8px; }
+  .swatches button {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-family: var(--font-body); font-weight: 500; font-size: 0.98rem; color: var(--ink);
+    background: transparent; border: 1.5px solid var(--line); border-radius: 6px; padding: 9px 14px; cursor: pointer; min-height: 48px;
+  }
+  .swatches button:hover { border-color: var(--ink); }
+  .swatches button[aria-pressed="true"] { border-color: var(--ink); box-shadow: inset 0 0 0 1px var(--ink); }
+  .dot { width: 18px; height: 18px; border-radius: 50%; border: 1px solid var(--line); flex: none; }
+  .dot.gold { background: linear-gradient(135deg, #E9C766, #B88A1E); }
+  .dot.black { background: linear-gradient(135deg, #3A3F45, #0B0D10); }
+
+  .buy { display: flex; flex-wrap: wrap; align-items: center; gap: 18px 28px; }
+  .price { display: flex; flex-direction: column; line-height: 1; }
+  .price b { font-family: var(--font-display); font-weight: 900; font-size: 3rem; font-variant-numeric: tabular-nums; }
+  .price small { font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-top: 6px; }
+  .hero-note { font-size: 0.95rem; color: var(--muted); }
+
+  .stage { background: var(--photo-bg); border: 1px solid var(--line); border-radius: 10px; padding: clamp(8px, 2vw, 20px); display: flex; justify-content: center; min-width: 0; }
+  .stage img { width: 100%; max-width: 480px; aspect-ratio: 1 / 1; }
+
+  /* Ventajas */
+  .features { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 230px), 1fr)); gap: 32px 28px; margin-top: 36px; }
+  .features div { border-top: 3px solid var(--accent); padding-top: 14px; display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+  .features p { color: var(--muted); font-size: 0.98rem; }
+
+  /* Ficha y caja */
+  .col { min-width: 0; display: flex; flex-direction: column; gap: 24px; }
+  dl.specs { margin: 0; display: grid; grid-template-columns: auto 1fr; }
+  dl.specs dt, dl.specs dd { padding: 11px 0; border-bottom: 1px solid var(--line); margin: 0; }
+  dl.specs dt { color: var(--muted); padding-right: 24px; }
+  dl.specs dd { font-family: var(--font-mono); font-size: 0.92rem; text-align: right; font-variant-numeric: tabular-nums; }
+  ul.box { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; }
+  ul.box li { padding: 11px 0; border-bottom: 1px solid var(--line); display: flex; justify-content: space-between; gap: 16px; }
+  ul.box li span { font-family: var(--font-mono); font-size: 0.9rem; color: var(--muted); }
+
+  .box-photo { background: linear-gradient(155deg, #F6F0E2 0%, #E6D8B8 100%); border: 1px solid var(--accent); border-radius: 12px; padding: clamp(10px, 2vw, 18px); box-shadow: 0 10px 30px rgba(0, 0, 0, .35); }
+  .box-photo img { width: 100%; max-width: 520px; height: auto; margin-inline: auto; mix-blend-mode: multiply; }
+
+  /* Cierre */
+  .closing { background: var(--surface); color: var(--ink); margin-inline: calc(clamp(16px, 4vw, 40px) * -1); padding-inline: clamp(16px, 4vw, 40px); border-top: 0; }
+  .closing .wrap { display: flex; flex-direction: column; gap: 22px; align-items: flex-start; }
+  .closing h2 { max-width: 14ch; color: var(--accent); }
+  .closing .num { font-family: var(--font-mono); font-size: 1.05rem; letter-spacing: 0.04em; user-select: all; }
+  .closing p { opacity: .8; }
+  footer { padding-block: 24px 96px; color: var(--muted); font-size: 0.85rem; }
+
+  @media (max-width: 440px) {
+    .btn-wa .long { display: none; }
+    .brand { font-size: 1.5rem; }
+  }
+
+  /* WhatsApp flotante */
+  .wa-float {
+    position: fixed; right: 16px; bottom: calc(16px + env(safe-area-inset-bottom, 0px)); z-index: 10;
+    display: inline-flex; align-items: center; gap: 10px;
+    background: var(--wa); color: var(--wa-ink); text-decoration: none;
+    font-weight: 600; font-size: 0.98rem; line-height: 1.2;
+    padding: 14px 20px 14px 16px; border-radius: 999px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, .28);
+    transition: transform .15s ease, filter .15s ease;
+  }
+  .wa-float:hover { filter: brightness(1.1); transform: translateY(-2px); }
+  .wa-float svg { width: 30px; height: 30px; flex: none; }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .wa-float { transition: none; }
+    .btn-wa, .hair { transition: none; }
+  }
+</style>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><symbol id="wa-logo" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.3-.15-1.263-.465-2.403-1.485-.888-.795-1.484-1.77-1.66-2.07-.174-.3-.019-.465.13-.615.136-.135.301-.345.451-.523.146-.181.194-.301.297-.496.1-.21.049-.375-.025-.524-.075-.15-.672-1.62-.922-2.206-.24-.584-.487-.51-.672-.51-.172-.015-.371-.015-.571-.015-.2 0-.523.074-.797.359-.273.3-1.045 1.02-1.045 2.475s1.07 2.865 1.219 3.075c.149.18 2.095 3.195 5.076 4.483.714.306 1.27.487 1.704.629.714.227 1.365.195 1.88.121.574-.091 1.767-.721 2.016-1.426.255-.705.255-1.29.18-1.425-.074-.135-.27-.21-.57-.345m-5.446 7.443h-.016c-1.77 0-3.524-.48-5.055-1.38l-.36-.214-3.75.975 1.005-3.645-.239-.375c-.99-1.576-1.516-3.391-1.516-5.26 0-5.445 4.455-9.885 9.942-9.885 2.654 0 5.145 1.035 7.021 2.91 1.875 1.859 2.909 4.35 2.909 6.99-.004 5.444-4.46 9.885-9.935 9.885M20.52 3.449C18.24 1.245 15.24 0 12.045 0 5.463 0 .104 5.334.101 11.893c0 2.096.549 4.14 1.595 5.945L0 24l6.335-1.652c1.746.943 3.71 1.444 5.71 1.447h.006c6.585 0 11.946-5.336 11.949-11.896 0-3.176-1.24-6.165-3.495-8.411"/></symbol></svg>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#inicio">Vintage <span>T9</span></a>
+    <a class="btn-wa small" data-wa target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><use href="#wa-logo"/></svg>
+      Pedir<span class="long">&nbsp;por WhatsApp</span>
+    </a>
+  </div>
+</header>
+<div class="pole" aria-hidden="true"></div>
+
+<main>
+  <section id="inicio" class="hero">
+    <div class="wrap grid2">
+      <div class="hero-text">
+        <p class="eyebrow">Recortadora inalámbrica · La Paz, Bolivia</p>
+        <h1>Máquina de barba <em>Vintage T9</em></h1>
+        <p class="lead">Cuchilla en T para perfilar barba y cabello, cuerpo de metal grabado y carga por USB. Disponible en dorado y negro.</p>
+
+        <div class="colors">
+          <p class="eyebrow">Color</p>
+          <div class="swatches" id="swatches" role="group" aria-label="Elegir color"></div>
+        </div>
+
+        <div class="buy">
+          <div class="price"><b data-price>Bs 50</b><small>Precio final</small></div>
+          <a class="btn-wa big" data-wa target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><use href="#wa-logo"/></svg>
+            Quiero la mía
+          </a>
+        </div>
+        <p class="hero-note">Entregas en La Paz, Bolivia. Pago y entrega se acuerdan por WhatsApp.</p>
+      </div>
+
+      <div class="stage">
+        <img id="heroImg" src="images/maquina-barba-vintage-t9-dorado-buda.jpg" width="640" height="640" fetchpriority="high"
+             alt="Máquina de barba Vintage T9 dorada con relieve de Buda, con cepillo y cable USB">
+      </div>
+    </div>
+  </section>
+
+
+  <section>
+    <div class="wrap">
+      <p class="eyebrow">Por qué la T9</p>
+      <h2 style="margin-top:10px">Hecha para perfilar</h2>
+      <div class="features">
+        <div><h3>Cuchilla en T</h3><p>Su forma deja delinear contornos, patillas y cuello con precisión.</p></div>
+        <div><h3>Metal grabado</h3><p>Cuerpo con relieve de dragón o de Buda. Se siente sólida en la mano.</p></div>
+        <div><h3>Carga por USB</h3><p>Se recarga con el cable incluido. Sin pilas.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap grid2" style="align-items:start">
+      <div class="col">
+        <h2>Ficha técnica</h2>
+        <dl class="specs">
+          <dt>Modelo</dt><dd>Vintage T9</dd>
+          <dt>Colores</dt><dd>Dorado · Negro</dd>
+          <dt>Cuerpo</dt><dd>Metal grabado</dd>
+          <dt>Cuchilla</dt><dd>En T</dd>
+          <dt>Carga</dt><dd>USB</dd>
+        </dl>
+      </div>
+      <div class="col">
+        <h2>En la caja</h2>
+        <ul class="box">
+          <li>Máquina Vintage T9 <span>×1</span></li>
+          <li>Peines <span>×3</span></li>
+          <li>Cable USB <span>×1</span></li>
+          <li>Cepillo limpiador <span>×1</span></li>
+        </ul>
+        <div class="box-photo">
+          <img src="images/vintage-t9-en-la-caja.jpg" width="500" height="400" loading="lazy"
+               alt="Caja Trimmer con la máquina dorada grabada con dragón, junto al cepillo limpiador y  el cable USB ">
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+  <section class="closing">
+    <div class="wrap">
+      <h2>Pide tu Vintage T9 hoy</h2>
+      <p>Entregas en La Paz, Bolivia. Escríbenos y te respondemos por el mismo chat.</p>
+      <a class="btn-wa big" data-wa target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><use href="#wa-logo"/></svg>
+        Pedir por WhatsApp
+      </a>
+      <p class="num" id="phoneText"></p>
+    </div>
+  </section>
+</main>
+<div class="pole" aria-hidden="true"></div>
+<footer><div class="wrap">Vintage T9 · Máquina recortadora de barba · La Paz, Bolivia</div></footer>
+
+<a class="wa-float" data-wa-ask target="_blank" rel="noopener" aria-label="Preguntar por WhatsApp sobre la máquina Vintage T9">
+  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><use href="#wa-logo"/></svg>
+  Preguntar
+</a>
+
+<script>
+  // Edita estos datos para dejar la página con tu información real.
+  var CONFIG = {
+    phone: "59171261231",   // código de país + número, sin + ni espacios
+    price: "Bs 50",
+    product: "la máquina de barba Vintage T9"
+  };
+
+  var COLORS = [
+    { id: "dorado", name: "Dorado Buda", dot: "gold", img: "images/maquina-barba-vintage-t9-dorado-buda.jpg",
+      alt: "Máquina de barba Vintage T9 dorada con relieve de Buda, con cepillo y cable USB" },
+    { id: "negro", name: "Negro Dragón", dot: "black", img: "images/maquina-barba-vintage-t9-negro-dragon.jpg",
+      alt: "Máquina de barba Vintage T9 negra con relieve de dragón, con cepillo y cable USB" }
+  ];
+  var color = COLORS[0];
+
+  function waUrl() {
+    var msg = "Hola, quiero pedir " + CONFIG.product + " en color " + color.name + " (" + CONFIG.price + "). ¿Está disponible?";
+    return "https://wa.me/" + CONFIG.phone + "?text=" + encodeURIComponent(msg);
+  }
+  function refreshLinks() {
+    var u = waUrl();
+    document.querySelectorAll("[data-wa]").forEach(function (a) { a.setAttribute("href", u); });
+    var ask = "https://wa.me/" + CONFIG.phone + "?text=" + encodeURIComponent("Hola, tengo una pregunta sobre " + CONFIG.product + ".");
+    document.querySelectorAll("[data-wa-ask]").forEach(function (a) { a.setAttribute("href", ask); });
+  }
+  document.querySelectorAll("[data-price]").forEach(function (el) { el.textContent = CONFIG.price; });
+  document.getElementById("phoneText").textContent = "WhatsApp +" + CONFIG.phone.slice(0, 3) + " " + CONFIG.phone.slice(3);
+
+  var swatches = document.getElementById("swatches");
+  var heroImg = document.getElementById("heroImg");
+  function pickColor(i) {
+    color = COLORS[i];
+    heroImg.src = color.img;
+    heroImg.alt = color.alt;
+    swatches.querySelectorAll("button").forEach(function (b, j) { b.setAttribute("aria-pressed", j === i ? "true" : "false"); });
+    refreshLinks();
+  }
+  COLORS.forEach(function (c, i) {
+    var b = document.createElement("button");
+    b.type = "button";
+    b.id = "color-" + c.id;
+    b.innerHTML = '<span class="dot ' + c.dot + '"></span>' + c.name;
+    b.addEventListener("click", function () { pickColor(i); });
+    swatches.appendChild(b);
+  });
+  pickColor(0);
+
+</script>
+
+</body></html>
