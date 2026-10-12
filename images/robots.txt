@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://vintage-t9.vercel.app/sitemap.xml
